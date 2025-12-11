@@ -2,6 +2,10 @@
 
 A real-time GLSL shader editor and preview application built with React and WebGL. Write, compile, and visualize fragment shaders instantly with support for image and video textures.
 
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://ankiimation.github.io/InstantGLSL/)
+
+**[🚀 Try it live!](https://ankiimation.github.io/InstantGLSL/)**
+
 ![InstantGLSL Application](file:///Users/lenguyenkhoa/.gemini/antigravity/brain/127f072f-b399-4301-bd51-7a10d99cf766/app_screenshot.png)
 
 ## ✨ Features
