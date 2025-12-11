@@ -37,7 +37,7 @@ function App() {
     const loadDefaultMedia = async () => {
       try {
         // Use BASE_URL to work in both dev and production
-        const response = await fetch(`${import.meta.env.BASE_URL}/public/sample.webp`);
+        const response = await fetch(`${import.meta.env.BASE_URL}public/sample.webp`);
         const blob = await response.blob();
         const url = URL.createObjectURL(blob);
         setMediaSource({ type: 'image', url });
