@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import GLSLEditor from './components/GLSLEditor';
 import ShaderPreview from './components/ShaderPreview';
 import MediaInput from './components/MediaInput';
@@ -31,6 +31,22 @@ function App() {
   const [compiledShader, setCompiledShader] = useState(defaultShader);
   const [mediaSource, setMediaSource] = useState(null);
   const [errorCallback, setErrorCallback] = useState(null);
+
+  // Load default sample image on mount
+  useEffect(() => {
+    const loadDefaultMedia = async () => {
+      try {
+        // Use BASE_URL to work in both dev and production
+        const response = await fetch(`${import.meta.env.BASE_URL}/public/sample.webp`);
+        const blob = await response.blob();
+        const url = URL.createObjectURL(blob);
+        setMediaSource({ type: 'image', url });
+      } catch (error) {
+        console.error('Failed to load default media:', error);
+      }
+    };
+    loadDefaultMedia();
+  }, []);
 
   const handleCompile = (code, onError) => {
     setCompiledShader(code);
