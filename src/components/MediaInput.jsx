@@ -11,9 +11,9 @@ export default function MediaInput({ onMediaSelect }) {
         onMediaSelect({ type, url, name: file.name });
     };
 
-    const handleUrlInput = (url, type) => {
-        onMediaSelect({ type, url, name: url });
-    };
+    // const handleUrlInput = (url, type) => {
+    //     onMediaSelect({ type, url, name: url });
+    // };
 
     return (
         <div className="media-input">
@@ -39,7 +39,7 @@ export default function MediaInput({ onMediaSelect }) {
                     </div>
                 </label>
 
-                <div className="divider">
+                {/* <div className="divider">
                     <span>or</span>
                 </div>
 
@@ -58,7 +58,7 @@ export default function MediaInput({ onMediaSelect }) {
                         <span className="icon">🎬</span>
                         Sample Video
                     </button>
-                </div>
+                </div> */}
             </div>
         </div>
     );
