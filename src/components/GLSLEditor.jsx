@@ -38,6 +38,7 @@ export default function GLSLEditor({ onCompile }) {
 
     const handleEditorDidMount = (editor) => {
         editorRef.current = editor;
+        handleCompile();
     };
 
     const handleShaderError = (errorInfo) => {

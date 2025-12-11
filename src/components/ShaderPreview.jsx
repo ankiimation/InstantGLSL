@@ -46,6 +46,7 @@ export default function ShaderPreview({ shaderCode, mediaSource, onError, onMedi
         if (!mediaSource || !glRef.current) return;
 
         const gl = glRef.current;
+        let videoUpdateFrameId = null; // Track the video update loop
 
         const loadTexture = (source) => {
             const texture = gl.createTexture();
@@ -133,13 +134,18 @@ export default function ShaderPreview({ shaderCode, mediaSource, onError, onMedi
                     if (video.readyState >= video.HAVE_CURRENT_DATA) {
                         updateVideoTexture(texture, video);
                     }
-                    requestAnimationFrame(updateFrame);
+                    videoUpdateFrameId = requestAnimationFrame(updateFrame);
                 };
                 updateFrame();
             });
         }
 
         return () => {
+            // Cancel the video update loop
+            if (videoUpdateFrameId) {
+                cancelAnimationFrame(videoUpdateFrameId);
+            }
+            
             if (textureRef.current) {
                 gl.deleteTexture(textureRef.current);
                 textureRef.current = null;
@@ -273,7 +279,7 @@ export default function ShaderPreview({ shaderCode, mediaSource, onError, onMedi
                 });
             }
         }
-    }, [shaderCode, isPlaying, onError]);
+    }, [shaderCode, isPlaying, onError, mediaSource]);
 
     const togglePlayPause = () => {
         setIsPlaying(!isPlaying);
